@@ -9,10 +9,10 @@ script:
   - docker run -e CI=true dlmonette/react-test npm test
 
 after_sucess:
-  -docker build -t dlmonette/multi-client ./client
-  -docker build -t dlmonette/multi-nginx ./nginx
-  -docker build -t dlmonette/multi-server ./server
-  -docker build -t dlmonette/multi-worker ./worker
+  - docker build -t dlmonette/multi-client ./client
+  - docker build -t dlmonette/multi-nginx ./nginx
+  - docker build -t dlmonette/multi-server ./server
+  - docker build -t dlmonette/multi-worker ./worker
   #Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
