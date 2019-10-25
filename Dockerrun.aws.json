@@ -1,0 +1,35 @@
+{
+	"AWSEBDockerrunVersion": 2,
+	"containerDefinitions": [
+		{
+			"name": "client",
+			"image": "dlmonette/multi-client",
+			"hostname": "client",
+			"essential": false
+		},
+		{
+			"name": "server",
+			"image": "dlmonette/multi-server",
+			"hostname": "api",
+			"essential": false
+		},
+		{
+			"name": "worker",
+			"image": "dlmonette/multi-worker",
+			"hostname": "worker",
+			"essential": false
+		},
+		{
+			"name": "nginx",
+			"image": "dlmonette/multi-nginx",
+			"essential": true,
+			"portMappings": [
+				{
+					"hostPort":80,
+					"containerPort":80
+				}
+			],
+			"links": ["client", "server"]
+		}
+	]
+}
